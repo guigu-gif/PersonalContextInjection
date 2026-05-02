@@ -7,11 +7,11 @@
       </div>
       <h1>欢迎回来</h1>
       <p class="sub">课程表 · 备忘录 · 智能提醒</p>
-      <p class="default-hint">默认账号：admin / admin123</p>
+      <p class="default-hint">默认账号：13800000000 / admin123</p>
 
       <div class="field-group">
         <label>手机号</label>
-        <input v-model="phone" maxlength="11" placeholder="admin" @keydown.enter="login" />
+        <input v-model="phone" maxlength="11" placeholder="13800000000" @keydown.enter="login" />
       </div>
       <div class="field-group">
         <label>验证码</label>
@@ -35,8 +35,8 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import request from '@/utils/request'
 
-const phone = ref(localStorage.getItem('saved_phone') || '')
-const code = ref(localStorage.getItem('saved_code') || '')
+const phone = ref(localStorage.getItem('saved_phone') || '13800000000')
+const code = ref(localStorage.getItem('saved_code') || 'admin123')
 const msg = ref('')
 const loading = ref(false)
 const router = useRouter()
