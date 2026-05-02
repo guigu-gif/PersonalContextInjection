@@ -25,7 +25,12 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new RefreshTokenInterceptor(stringRedisTemplate)).order(0);
         registry.addInterceptor(new RateLimitInterceptor(stringRedisTemplate)).order(1);
         registry.addInterceptor(new LoginInterceptor())
-                .excludePathPatterns("/user/login", "/user/code")
+                .excludePathPatterns(
+                        "/user/login", "/user/code",
+                        "/", "/login", "/home", "/course", "/memo",
+                        "/notify", "/chat", "/settings", "/travel", "/guide",
+                        "/index.html", "/assets/**", "/*.js", "/*.css", "/*.ico", "/*.svg"
+                )
                 .order(2);
     }
 
