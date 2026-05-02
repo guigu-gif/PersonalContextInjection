@@ -1,0 +1,68 @@
+@import './base.css';
+
+/* ── 全局 CSS 变量（默认值） ── */
+:root {
+  --font-base: 15px;
+  --font-sm:   13px;
+  --font-lg:   18px;
+  --font-xl:   24px;
+  --font-h1:   clamp(28px, 4vw, 42px);
+  --radius-card: 28px;
+  --bg-page: #f7f8fc;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --wallpaper-url: none;
+}
+
+/* 大字体 */
+:root[data-font="large"] {
+  --font-base: 18px;
+  --font-sm:   15px;
+  --font-lg:   22px;
+  --font-xl:   28px;
+  --font-h1:   clamp(32px, 4.5vw, 48px);
+}
+
+/* 超大字体（老年模式） */
+:root[data-font="xlarge"] {
+  --font-base: 22px;
+  --font-sm:   18px;
+  --font-lg:   26px;
+  --font-xl:   34px;
+  --font-h1:   clamp(36px, 5vw, 54px);
+}
+
+/* 老年主题：高对比度 + 暖色 */
+:root[data-theme="elder"] {
+  --bg-page: #fffdf5;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --radius-card: 20px;
+}
+
+/* 暗色主题（预留，后续实现） */
+:root[data-theme="dark"] {
+  --bg-page: #0f172a;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+}
+
+/* 壁纸（预留，背景图叠加在页面底层） */
+:root[data-wallpaper="campus"] { --wallpaper-url: url('/wallpapers/campus.jpg'); }
+:root[data-wallpaper="nature"]  { --wallpaper-url: url('/wallpapers/nature.jpg'); }
+:root[data-wallpaper="minimal"] { --wallpaper-url: url('/wallpapers/minimal.jpg'); }
+
+body {
+  font-size: var(--font-base);
+  color: var(--text-primary);
+  transition: font-size 0.2s ease, background-color 0.2s ease;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  font-weight: normal;
+  margin: 0;
+}
+

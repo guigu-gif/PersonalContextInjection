@@ -1,0 +1,47 @@
+# 敏感文档和个人信息
+docs/
+*.md
+!README.md
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# 编译输出
+target/
+dist/
+build/
+out/
+
+# 依赖
+node_modules/
+
+# 日志
+logs/
+*.log
+
+# 运行时文件
+runtime/
+*.pid
+
+# 测试
+test/
+**/test/
+
+# 环境配置（包含API key）
+application.yaml
+application.yml
+!application-example.yaml
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.bak
+*.swp
+
+# Claude配置
+.claude/

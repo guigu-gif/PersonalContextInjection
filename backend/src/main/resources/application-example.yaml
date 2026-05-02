@@ -1,0 +1,82 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: pci
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+        instance:
+          service-base-url: http://localhost:8082
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/pci?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    username: root
+    password: your_mysql_password
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    redisson:
+      file: classpath:redisson.yaml
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+  jackson:
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  type-aliases-package: com.pci.entity
+
+logging:
+  level:
+    com.pci: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+# 智谱AI配置（需要申请API key）
+zhipu:
+  api-key: your_zhipu_api_key_here
+  embedding-url: https://open.bigmodel.cn/api/paas/v4/embeddings
+  embedding-model: embedding-2
+  embedding-dim: 1024
+  chat-url: https://open.bigmodel.cn/api/paas/v4/chat/completions
+  chat-model: glm-4-flash
+
+# Qdrant向量数据库配置
+qdrant:
+  host: localhost
+  port: 6334
+  collection-memo: memos
+  collection-post: posts
+
+# 通义千问VL配置（需要申请API key）
+vision:
+  api-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  api-key: your_qwen_api_key_here
+  model: qwen2.5-vl-72b-instruct
+
+# 高德地图配置（需要申请API key）
+gaode:
+  api-key: your_gaode_api_key_here
+  geocode-url: http://restapi.amap.com/v3/geocode/geo
+  regeo-url: http://restapi.amap.com/v3/geocode/regeo
+  transit-url: http://restapi.amap.com/v3/direction/transit/integrated
+  inputtips-url: http://restapi.amap.com/v3/assistant/inputtips
+
+# 开发模式：启动后自动打开浏览器（部署时改为 false）
+pci:
+  browser:
+    open: true
+    url: http://localhost:5173/login
