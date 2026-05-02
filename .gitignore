@@ -13,6 +13,7 @@ target/
 dist/
 build/
 out/
+backend/src/main/resources/static/
 
 # 依赖
 node_modules/

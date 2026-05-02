@@ -16,7 +16,7 @@ public class BrowserLauncher {
     @Value("${pci.browser.open:false}")
     private boolean openBrowser;
 
-    @Value("${pci.browser.url:http://localhost:5173/login}")
+    @Value("${pci.browser.url:http://localhost:8082/login}")
     private String browserUrl;
 
     @EventListener(ApplicationReadyEvent.class)
