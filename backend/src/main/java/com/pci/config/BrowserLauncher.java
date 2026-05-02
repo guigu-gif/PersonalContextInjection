@@ -6,9 +6,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import java.net.URI;
-import java.awt.Desktop;
-
 @Slf4j
 @Component
 public class BrowserLauncher {
@@ -23,12 +20,16 @@ public class BrowserLauncher {
     public void onReady() {
         if (!openBrowser) return;
         try {
-            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                Desktop.getDesktop().browse(new URI(browserUrl));
-                log.info("已自动打开浏览器: {}", browserUrl);
+            String os = System.getProperty("os.name").toLowerCase();
+            if (os.contains("win")) {
+                // Windows: start 命令需要空字符串作为窗口标题，否则 URL 中的 :// 会被误解析
+                Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start", "", browserUrl});
+            } else if (os.contains("mac")) {
+                Runtime.getRuntime().exec(new String[]{"open", browserUrl});
             } else {
-                Runtime.getRuntime().exec("cmd /c start " + browserUrl);
+                Runtime.getRuntime().exec(new String[]{"xdg-open", browserUrl});
             }
+            log.info("已自动打开浏览器: {}", browserUrl);
         } catch (Exception e) {
             log.warn("自动打开浏览器失败: {}", e.getMessage());
         }
